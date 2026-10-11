@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Registo de chamadas no terminal para depuração no Render
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next();
+});
+
 app.use(express.static(__dirname));
 
 // Ligação ao MongoDB Atlas
@@ -27,17 +34,17 @@ const Compra = mongoose.model('Compra', new mongoose.Schema({}, { strict: false,
 // --- ROTAS DA API ---
 
 // 1. Obter catálogo de eBooks
-app.get(['/api/ebooks', '/ebooks'], async (req, res) => {
+app.get(['/api/ebooks', '/ebooks'], async (req, res, next) => {
   try {
     const ebooks = await Ebook.find({});
-    res.json(ebooks);
+    return res.json(ebooks);
   } catch (error) {
-    res.status(500).json({ erro: 'Erro ao carregar o catálogo de eBooks.' });
+    return next(error);
   }
 });
 
 // 2. Registo de Utilizador
-app.post(['/api/usuarios/registro', '/usuarios/registro', '/api/usuarios/registo'], async (req, res) => {
+app.post(['/api/usuarios/registro', '/api/usuarios/registro/'], async (req, res, next) => {
   try {
     const { nome, email, senha } = req.body || {};
     if (!email || !senha) {
@@ -48,7 +55,7 @@ app.post(['/api/usuarios/registro', '/usuarios/registro', '/api/usuarios/registo
     const existente = await Usuario.findOne({ email: emailFormatado });
     
     if (existente) {
-      return res.status(400).json({ erro: 'Este e-mail já está registado. Tente iniciar sessão!' });
+      return res.status(400).json({ erro: 'Este e-mail já está registado. Alterne para "Iniciar Sessão".' });
     }
 
     const novoUsuario = new Usuario({
@@ -61,13 +68,12 @@ app.post(['/api/usuarios/registro', '/usuarios/registro', '/api/usuarios/registo
     await novoUsuario.save();
     return res.status(201).json(novoUsuario);
   } catch (error) {
-    console.error('Erro no registo:', error);
-    return res.status(500).json({ erro: 'Erro ao criar a conta no servidor.' });
+    return next(error);
   }
 });
 
 // 3. Login de Utilizador
-app.post(['/api/usuarios/login', '/usuarios/login'], async (req, res) => {
+app.post(['/api/usuarios/login', '/api/usuarios/login/'], async (req, res, next) => {
   try {
     const { email, senha } = req.body || {};
     if (!email || !senha) {
@@ -83,13 +89,12 @@ app.post(['/api/usuarios/login', '/usuarios/login'], async (req, res) => {
 
     return res.json(usuario);
   } catch (error) {
-    console.error('Erro no login:', error);
-    return res.status(500).json({ erro: 'Erro ao iniciar sessão.' });
+    return next(error);
   }
 });
 
-// 4. Registar Compras
-app.post(['/api/compras', '/compras'], async (req, res) => {
+// 4. Registo de Compras
+app.post(['/api/compras', '/api/compras/'], async (req, res, next) => {
   try {
     const novaCompra = new Compra({
       ...req.body,
@@ -98,28 +103,24 @@ app.post(['/api/compras', '/compras'], async (req, res) => {
     await novaCompra.save();
     return res.status(201).json({ sucesso: true, compra: novaCompra });
   } catch (error) {
-    console.error('Erro na compra:', error);
-    return res.status(500).json({ erro: 'Erro ao guardar a compra na base de dados.' });
+    return next(error);
   }
 });
 
-app.get(['/api/compras', '/compras'], async (req, res) => {
-  try {
-    const compras = await Compra.find({});
-    return res.json(compras);
-  } catch (error) {
-    return res.status(500).json({ erro: 'Erro ao procurar compras.' });
-  }
-});
-
-// Resposta JSON para rotas da API não encontradas (evita devolver páginas HTML)
+// Garantir que chamadas à API não encontradas devolvam sempre JSON em vez de HTML
 app.all('/api/*', (req, res) => {
-  res.status(404).json({ erro: 'Endpoint da API não encontrado.' });
+  return res.status(404).json({ erro: `Rota da API não encontrada: ${req.method} ${req.url}` });
 });
 
-// Rota de fallback para o Frontend
+// Rota fallback para o frontend em HTML
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Tratador global de erros (impede respostas HTML em erros do servidor)
+app.use((err, req, res, next) => {
+  console.error('❌ Erro no servidor:', err);
+  res.status(500).json({ erro: err.message || 'Erro interno no servidor.' });
 });
 
 app.listen(PORT, () => console.log(`🚀 Servidor ativo na porta ${PORT}`));
