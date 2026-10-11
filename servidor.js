@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Registo de chamadas no terminal para depuração no Render
+// Registos no terminal para depuração no Render
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   next();
@@ -33,7 +33,7 @@ const Compra = mongoose.model('Compra', new mongoose.Schema({}, { strict: false,
 
 // --- ROTAS DA API ---
 
-// 1. Obter catálogo de eBooks
+// 1. Catálogo
 app.get(['/api/ebooks', '/ebooks'], async (req, res, next) => {
   try {
     const ebooks = await Ebook.find({});
@@ -43,7 +43,7 @@ app.get(['/api/ebooks', '/ebooks'], async (req, res, next) => {
   }
 });
 
-// 2. Registo de Utilizador
+// 2. Registo
 app.post(['/api/usuarios/registro', '/api/usuarios/registro/'], async (req, res, next) => {
   try {
     const { nome, email, senha } = req.body || {};
@@ -72,7 +72,7 @@ app.post(['/api/usuarios/registro', '/api/usuarios/registro/'], async (req, res,
   }
 });
 
-// 3. Login de Utilizador
+// 3. Login
 app.post(['/api/usuarios/login', '/api/usuarios/login/'], async (req, res, next) => {
   try {
     const { email, senha } = req.body || {};
@@ -93,7 +93,7 @@ app.post(['/api/usuarios/login', '/api/usuarios/login/'], async (req, res, next)
   }
 });
 
-// 4. Registo de Compras
+// 4. Compras
 app.post(['/api/compras', '/api/compras/'], async (req, res, next) => {
   try {
     const novaCompra = new Compra({
@@ -107,17 +107,26 @@ app.post(['/api/compras', '/api/compras/'], async (req, res, next) => {
   }
 });
 
-// Garantir que chamadas à API não encontradas devolvam sempre JSON em vez de HTML
+app.get(['/api/compras', '/api/compras/'], async (req, res, next) => {
+  try {
+    const compras = await Compra.find({});
+    return res.json(compras);
+  } catch (error) {
+    return next(error);
+  }
+});
+
+// Resposta estrita em JSON para rotas da API não encontradas (impede devolução de HTML)
 app.all('/api/*', (req, res) => {
   return res.status(404).json({ erro: `Rota da API não encontrada: ${req.method} ${req.url}` });
 });
 
-// Rota fallback para o frontend em HTML
+// Fallback para o frontend HTML
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Tratador global de erros (impede respostas HTML em erros do servidor)
+// Tratador global de erros em JSON
 app.use((err, req, res, next) => {
   console.error('❌ Erro no servidor:', err);
   res.status(500).json({ erro: err.message || 'Erro interno no servidor.' });
