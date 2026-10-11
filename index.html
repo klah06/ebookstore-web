@@ -40,7 +40,7 @@
     .top-bar strong { color: var(--accent); }
 
     /* Header */
-    header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0.9rem 2rem; }
+    header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0.9rem 2rem; }
     .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
     
     .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); }
@@ -58,7 +58,6 @@
 
     /* Hero Section */
     .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 4.5rem 1rem 4rem; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(217, 119, 6, 0.08) 0%, transparent 60%); pointer-events: none; }
     .hero-container { max-width: 800px; margin: 0 auto; position: relative; z-index: 2; }
     .hero-chip { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #fbbf24; padding: 6px 16px; border-radius: 30px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1.2rem; }
     .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; color: #f8fafc; }
@@ -71,13 +70,13 @@
     /* Layout Main */
     .main-container { max-width: 1280px; margin: 2.5rem auto; padding: 0 1.5rem; }
     
-    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 15px; }
+    .section-header { margin-bottom: 1.2rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--primary); }
     
     /* Categorias */
-    .categories-bar { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+    .categories-bar { display: flex; gap: 10px; overflow-x: auto; padding: 8px 0 16px 0; scrollbar-width: none; margin-bottom: 1.5rem; }
     .categories-bar::-webkit-scrollbar { display: none; }
-    .cat-btn { padding: 9px 20px; border-radius: 25px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; font-size: 0.88rem; font-weight: 600; white-space: nowrap; transition: all 0.2s ease; }
+    .cat-btn { padding: 10px 22px; border-radius: 25px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; font-size: 0.9rem; font-weight: 600; white-space: nowrap; transition: all 0.2s ease; }
     .cat-btn:hover, .cat-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); box-shadow: var(--shadow-sm); }
 
     /* Grid do Catálogo */
@@ -94,7 +93,7 @@
     .badge-formats { position: absolute; bottom: 12px; right: 12px; background: rgba(15, 23, 42, 0.85); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; backdrop-filter: blur(4px); }
 
     .book-info { padding: 1.2rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .book-rating { font-size: 0.82rem; color: #f59e0b; font-weight: 700; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 4px; }
+    .book-rating { font-size: 0.85rem; color: #d97706; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 4px; }
     .book-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .book-author { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; font-weight: 500; }
     
@@ -122,7 +121,7 @@
     .preview-details .author { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 1rem; }
     
     .meta-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.2rem; }
-    .meta-pill { background: #f1f5f9; color: var(--primary-light); font-size: 0.78rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+    .meta-pill { background: #fffbe2; border: 1px solid #fef08a; color: #b45309; font-size: 0.82rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
     
     .synopsis { font-size: 0.9rem; color: #475569; line-height: 1.6; max-height: 120px; overflow-y: auto; margin-bottom: 1.2rem; padding-right: 5px; }
 
@@ -136,7 +135,7 @@
     .qtd-picker button:hover { background: #e2e8f0; }
     .qtd-picker span { width: 36px; text-align: center; font-weight: 700; font-size: 0.9rem; }
 
-    /* Modal Login/Registro - Abas */
+    /* Modal Login/Registro */
     .tab-header { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
     .tab-btn { flex: 1; padding: 12px; text-align: center; background: none; border: none; font-weight: 700; font-size: 0.95rem; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -146,7 +145,7 @@
     .form-input-group input { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
     .form-input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1); }
 
-    /* Modal Pagamento / Checkout Multi-passos */
+    /* Checkout */
     .checkout-steps { display: flex; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); pb: 1rem; }
     .step-item { font-size: 0.82rem; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px; }
     .step-item.active { color: var(--accent); }
@@ -156,7 +155,6 @@
     .payment-methods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 1.2rem 0; }
     .pay-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 12px; text-align: center; cursor: pointer; transition: all 0.2s; font-size: 0.85rem; font-weight: 600; }
     .pay-card:hover, .pay-card.selected { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
-    .pay-card svg { display: block; margin: 0 auto 6px; width: 24px; height: 24px; }
 
     .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); gap: 10px; }
     .cart-item-info h4 { font-size: 0.95rem; color: var(--primary); font-weight: 700; }
@@ -217,10 +215,7 @@
   <!-- Conteudo Principal -->
   <main class="main-container">
     <div class="section-header">
-      <div>
-        <h2 class="section-title">Catálogo em Destaque</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">Explore a nossa seleção de livros digitais em destaque</p>
-      </div>
+      <h2 class="section-title">Explore por Categorias</h2>
     </div>
 
     <!-- Barra de Categorias -->
@@ -246,10 +241,9 @@
           <div class="author" id="prev-author">Por Autor</div>
 
           <div class="meta-pills">
-            <span class="meta-pill" id="prev-rating">⭐ 4.9</span>
-            <span class="meta-pill" id="prev-pages">~250 págs</span>
+            <span class="meta-pill" id="prev-rating">⭐ Classificação: 4.9 / 5.0</span>
             <span class="meta-pill" id="prev-lang">Português</span>
-            <span class="meta-pill" style="background: #dcfce7; color: #15803d;">⚡ Entrega Digital</span>
+            <span class="meta-pill" style="background: #dcfce7; border-color: #bbf7d0; color: #15803d;">⚡ Entrega Digital</span>
           </div>
 
           <div class="synopsis" id="prev-synopsis">Sinopse do livro...</div>
@@ -325,12 +319,11 @@
     </div>
   </div>
 
-  <!-- MODAL 3: CHECKOUT & PAGAMENTO COMPLETO -->
+  <!-- MODAL 3: CHECKOUT & PAGAMENTO -->
   <div class="modal-backdrop" id="modal-cart">
     <div class="modal-window" style="max-width: 580px;">
       <button class="close-btn" onclick="fecharModais()">&times;</button>
       
-      <!-- Passos do Checkout -->
       <div class="checkout-steps">
         <div class="step-item active" id="step-1-title"><span class="step-num">1</span> Carrinho</div>
         <div class="step-item" id="step-2-title"><span class="step-num">2</span> Pagamento</div>
@@ -352,7 +345,7 @@
         </button>
       </div>
 
-      <!-- ETAPA 2: FORMULÁRIO DE PAGAMENTO (PIX / CARTÃO) -->
+      <!-- ETAPA 2: PAGAMENTO -->
       <div id="checkout-step-2" style="display: none;">
         <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; color: var(--primary);">Forma de Pagamento</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Escolha como deseja pagar de forma 100% segura:</p>
@@ -372,14 +365,12 @@
           </div>
         </div>
 
-        <!-- Campos do PIX -->
         <div id="pay-box-pix" style="background: #f8fafc; border: 1px dashed var(--border); padding: 1.2rem; border-radius: var(--radius); text-align: center; margin-bottom: 1.5rem;">
           <p style="font-size: 0.88rem; font-weight: 600; color: var(--primary); margin-bottom: 8px;">Aponte a câmara do telemóvel ou copie o código abaixo:</p>
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=EBOOKSTORE-PIX-PAYMENT-MOCK" alt="QR Code PIX" style="border-radius: 8px; margin: 8px 0;">
           <input type="text" readonly value="00020126360014BR.GOV.BCB.PIX0114+55119999999995204000053039865802BR" style="width: 100%; padding: 8px; font-size: 0.75rem; text-align: center; border: 1px solid var(--border); border-radius: 6px; background: #fff;">
         </div>
 
-        <!-- Campos do Cartão (Oculto inicialmente) -->
         <div id="pay-box-cartao" style="display: none; background: #f8fafc; padding: 1.2rem; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 1.5rem;">
           <div class="form-input-group">
             <label>Número do Cartão</label>
@@ -405,7 +396,7 @@
         </div>
       </div>
 
-      <!-- ETAPA 3: SUCESSO & DOWNLOAD DOS LIVROS -->
+      <!-- ETAPA 3: SUCESSO -->
       <div id="checkout-step-3" style="display: none; text-align: center; padding: 1rem 0;">
         <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 0.5rem;">Pagamento Confirmado!</h3>
@@ -432,7 +423,6 @@
     let quantidadePreviewAtual = 1;
     let metodoPagamentoSelecionado = 'pix';
 
-    // Sistema de Notificações Toast Moderno
     function showToast(mensagem, tipo = 'success') {
       const container = document.getElementById('toast-wrap');
       const toast = document.createElement('div');
@@ -448,7 +438,7 @@
       return `R$ ${num.toFixed(2).replace('.', ',')}`;
     }
 
-    // Resolutores Dinâmicos de Dados do MongoDB
+    // Resolutores Dinâmicos
     function resolverAutor(b) {
       let val = b.autor || b.author || b.autor_nome || b.nome_autor || b.escritor || b.authorName || b.nomeAutor || b.autores;
       if (!val) return 'Autor Desconhecido';
@@ -459,6 +449,14 @@
 
     function resolverImagem(b) {
       return b.imagem || b.capa || b.cover || b.imagem_url || b.imagemUrl || b.capa_url || b.capaUrl || b.url_capa || b.url_imagem || b.link_capa || b.url || 'https://via.placeholder.com/200x300?text=Sem+Capa';
+    }
+
+    function resolverClassificacao(b) {
+      let val = b.avaliacao || b.rating || b.classificacao || b.nota || b.stars || b.score;
+      if (!val) return '4.9';
+      if (typeof val === 'object') val = val.media || val.score || val.rate;
+      const num = parseFloat(val);
+      return isNaN(num) ? '4.9' : num.toFixed(1);
     }
 
     // Carregar Catálogo
@@ -500,6 +498,7 @@
         const titulo = b.titulo || b.title || 'Sem Título';
         const precoNum = parseFloat(b.preco || 0);
         const precoOriginal = precoNum > 0 ? precoNum * 1.3 : 0;
+        const nota = resolverClassificacao(b);
         
         return `
           <div class="book-card">
@@ -509,7 +508,7 @@
               <img src="${imagem}" alt="${titulo}" onerror="this.src='https://via.placeholder.com/200x300?text=Sem+Capa'">
             </div>
             <div class="book-info">
-              <div class="book-rating">⭐ ${b.avaliacao || b.rating || '4.9'} <span>(120+ leitores)</span></div>
+              <div class="book-rating">⭐ Classificação: ${nota} / 5.0</div>
               <div class="book-title">${titulo}</div>
               <div class="book-author">${autor}</div>
               
@@ -529,20 +528,27 @@
       }).join('');
     }
 
-    // Categorias
+    // Categorias Extraídas Dinamicamente
     function gerarCategorias(ebooks) {
       const container = document.getElementById('categories-container');
-      const cats = ['Todos', ...new Set(ebooks.map(b => b.categoria || b.genero).filter(Boolean))];
-      container.innerHTML = cats.map(c => `<button class="cat-btn ${c === 'Todos' ? 'active' : ''}" onclick="filtrarCategoria('${c}')">${c}</button>`).join('');
+      const todasCategorias = ebooks.map(b => b.categoria || b.genero || b.category || b.genre).filter(Boolean);
+      const cats = ['Todos', ...new Set(todasCategorias)];
+
+      container.innerHTML = cats.map(c => `
+        <button class="cat-btn ${c === 'Todos' ? 'active' : ''}" onclick="filtrarCategoria('${c}')">${c}</button>
+      `).join('');
     }
 
     function filtrarCategoria(cat) {
-      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.toggle('active', btn.innerText === cat));
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.innerText.trim() === cat);
+      });
+
       const termo = document.getElementById('search-input').value.toLowerCase();
       const filtrados = todosEbooks.filter(b => {
-        const c = (b.categoria || b.genero || '').toLowerCase();
+        const c = (b.categoria || b.genero || b.category || b.genre || '').toLowerCase();
         const bateCat = cat === 'Todos' || c === cat.toLowerCase();
-        const bateBusca = (b.titulo || '').toLowerCase().includes(termo) || resolverAutor(b).toLowerCase().includes(termo);
+        const bateBusca = (b.titulo || b.title || '').toLowerCase().includes(termo) || resolverAutor(b).toLowerCase().includes(termo);
         return bateCat && bateBusca;
       });
       exibirEbooks(filtrados);
@@ -560,8 +566,7 @@
       document.getElementById('prev-title').innerText = b.titulo || b.title || 'Sem Título';
       document.getElementById('prev-author').innerText = 'Por ' + resolverAutor(b);
       document.getElementById('prev-img').src = resolverImagem(b);
-      document.getElementById('prev-rating').innerText = `⭐ ${b.avaliacao || '4.9'} / 5.0`;
-      document.getElementById('prev-pages').innerText = (b.paginas || b.pages || '280') + ' págs';
+      document.getElementById('prev-rating').innerText = `⭐ Classificação: ${resolverClassificacao(b)} / 5.0`;
       document.getElementById('prev-synopsis').innerText = b.sinopse || b.descricao || 'Este livro digital em alta definição inclui acesso ilimitado e vitalício nos formatos ePUB, PDF e MOBI.';
       document.getElementById('prev-price').innerText = formatarPreco(b.preco);
 
@@ -662,7 +667,7 @@
       document.getElementById('modal-cart').classList.add('active');
     }
 
-    // Fluxo de Pagamento Checkout
+    // Checkout
     function avancarParaPagamento() {
       if (carrinho.length === 0) return showToast('O seu carrinho está vazio!', 'warning');
       if (!usuarioAtual) {
@@ -712,7 +717,6 @@
 
         if (!res.ok) throw new Error('Erro ao processar o pagamento na base de dados.');
 
-        // Monta os links de Download simulados para o cliente
         const downloadContainer = document.getElementById('download-links-container');
         downloadContainer.innerHTML = carrinho.map(i => `
           <div style="display:flex; justify-content:space-between; align-items:center; padding: 8px 0; border-bottom: 1px solid var(--border);">
