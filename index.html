@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eBookStore - Livraria Digital Premium</title>
+  
+  <!-- Ícone da Aba do Navegador (Favicon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #f9f8f6; color: #1f2937; }
@@ -71,7 +75,7 @@
     .meta-item strong { color: #334155; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
     .preview-synopsis { font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0.8rem 0; max-height: 140px; overflow-y: auto; padding-right: 5px; }
 
-    /* Seletor de Formato e Quantidade no Modal */
+    /* Seletor de Formato e Quantidade */
     .selector-group { display: flex; gap: 15px; margin: 1rem 0; flex-wrap: wrap; background: #fffbe2; padding: 12px; border-radius: 10px; border: 1px solid #fef3c7; }
     .selector-item { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
     .selector-item label { font-size: 0.78rem; font-weight: 700; color: #92400e; text-transform: uppercase; }
@@ -127,7 +131,7 @@
     <div class="catalog-grid" id="catalog-grid"></div>
   </main>
 
-  <!-- MODAL: DETALHES DO LIVRO, SELEÇÃO DE FORMATO E QUANTIDADE -->
+  <!-- MODAL: DETALHES DO LIVRO -->
   <div class="modal-overlay" id="modal-preview">
     <div class="modal-content">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
@@ -226,7 +230,7 @@
     </div>
   </div>
 
-  <!-- MODAL: CARRINHO COM CONTROLO DE QUANTIDADE E FORMATO -->
+  <!-- MODAL: CARRINHO -->
   <div class="modal-overlay" id="modal-cart">
     <div class="modal-content" style="max-width: 560px;">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
@@ -245,7 +249,7 @@
 
   <script>
     let todosEbooks = [];
-    let carrinho = []; // Array contendo { id, titulo, autor, preco, formato, quantidade }
+    let carrinho = [];
     let usuarioAtual = JSON.parse(localStorage.getItem('usuario_ebookstore')) || null;
     let modoAuth = 'login';
     let livroPreviewAtual = null;
@@ -426,7 +430,7 @@
       }
     }
 
-    // Gestão de Carrinho com Formato e Quantidade
+    // Gestão de Carrinho
     function adicionarDiretoCarrinho(idOuTitulo) {
       const book = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
       if (book) {
