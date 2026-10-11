@@ -1,144 +1,97 @@
-// servidor.js
 const express = require('express');
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
+// Middlewares
 app.use(cors());
 app.use(express.json());
+
+// Servir ficheiros estáticos da pasta atual (HTML, CSS, Imagens)
 app.use(express.static(__dirname));
-app.use('/livros', express.static(path.join(__dirname, 'livros')));
 
-// SUBSTIUIR PELA TUA STRING DO MONGODB ATLAS QUANDO PUBLICARES NA NUVEM
-const url = process.env.MONGODB_URI || 'mongodb+srv://mariaclarabilingue_db_user:SenhaEbooks123@cluster0.56thhar.mongodb.net/ebooks?retryWrites=true&w=majority&appName=Cluster0';
-const client = new MongoClient(url);
+// Conexão ao MongoDB Atlas
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://mariaclarabilingue_db_user:SenhaEbooks123@cluster0.56thhar.mongodb.net/ebooks?retryWrites=true&w=majority&appName=Cluster0";
 
-let db;
-async function conectarDB() {
-    try {
-        await client.connect();
-        db = client.db('ebooks');
-        console.log('✅ Ligado ao MongoDB com sucesso!');
-    } catch (err) {
-        console.error('❌ Erro de conexão ao MongoDB:', err);
-    }
-}
-conectarDB();
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('✅ Ligado ao MongoDB Atlas com sucesso!'))
+  .catch(err => console.error('❌ Erro na ligação ao MongoDB:', err));
 
-// 1. CATÁLOGO DE EBOOKS
-app.get('/api/ebooks', async (req, res) => {
-    try {
-        const livros = await db.collection('ebooks').find({}).toArray();
-        res.json(livros);
-    } catch (erro) {
-        res.status(500).json({ mensagem: "Erro ao procurar catálogo." });
-    }
+// Schemas flexíveis para suportar qualquer estrutura existente na coleção
+const EbookSchema = new mongoose.Schema({}, { strict: false, collection: 'ebooks' });
+const Ebook = mongoose.model('Ebook', EbookSchema);
+
+const UsuarioSchema = new mongoose.Schema({}, { strict: false, collection: 'usuarios' });
+const Usuario = mongoose.model('Usuario', UsuarioSchema);
+
+const CompraSchema = new mongoose.Schema({}, { strict: false, collection: 'compras' });
+const Compra = mongoose.model('Compra', CompraSchema);
+
+// Função para procurar eBooks
+const getEbooksHandler = async (req, res) => {
+  try {
+    const ebooks = await Ebook.find({});
+    console.log(`📚 ${ebooks.length} ebooks encontrados.`);
+    res.json(ebooks);
+  } catch (error) {
+    console.error('❌ Erro ao procurar ebooks:', error);
+    res.status(500).json({ erro: 'Erro interno ao carregar o catálogo de ebooks.' });
+  }
+};
+
+// Rotas do Catálogo (Suporta ambas as URLs para evitar erros de rotas)
+app.get('/api/ebooks', getEbooksHandler);
+app.get('/ebooks', getEbooksHandler);
+
+// Rotas de Utilizadores
+app.get('/api/usuarios', async (req, res) => {
+  try {
+    const usuarios = await Usuario.find({});
+    res.json(usuarios);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao procurar utilizadores.' });
+  }
 });
 
-// 2. REGISTO DE UTILIZADOR
-app.post('/api/registro', async (req, res) => {
-    try {
-        const { nome, email, senha } = req.body;
-        if (!nome || !email || !senha) {
-            return res.status(400).json({ mensagem: "Preencha todos os campos!" });
-        }
-
-        const usuarios = db.collection('usuarios');
-        const usuarioExistente = await usuarios.findOne({ email: email.toLowerCase() });
-        if (usuarioExistente) {
-            return res.status(400).json({ mensagem: "Este e-mail já está registado!" });
-        }
-
-        const novoUsuario = {
-            nome,
-            email: email.toLowerCase(),
-            senha,
-            dataCriacao: new Date()
-        };
-
-        const resultado = await usuarios.insertOne(novoUsuario);
-
-        res.json({
-            sucesso: true,
-            mensagem: "Conta criada com sucesso!",
-            usuario: { id: resultado.insertedId, nome: novoUsuario.nome, email: novoUsuario.email }
-        });
-    } catch (erro) {
-        res.status(500).json({ mensagem: "Erro interno ao criar conta." });
-    }
+app.post('/api/usuarios', async (req, res) => {
+  try {
+    const novoUsuario = new Usuario(req.body);
+    await novoUsuario.save();
+    res.status(201).json(novoUsuario);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao guardar utilizador.' });
+  }
 });
 
-// 3. LOGIN DE UTILIZADOR
-app.post('/api/login', async (req, res) => {
-    try {
-        const { email, senha } = req.body;
-        const usuario = await db.collection('usuarios').findOne({ email: email.toLowerCase(), senha: senha });
-
-        if (!usuario) {
-            return res.status(401).json({ mensagem: "E-mail ou palavra-passe incorretos!" });
-        }
-
-        res.json({
-            sucesso: true,
-            mensagem: "Login efetuado com sucesso!",
-            usuario: { id: usuario._id, nome: usuario.nome, email: usuario.email }
-        });
-    } catch (erro) {
-        res.status(500).json({ mensagem: "Erro ao efetuar login." });
-    }
+// Rotas de Compras
+app.get('/api/compras', async (req, res) => {
+  try {
+    const compras = await Compra.find({});
+    res.json(compras);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao procurar compras.' });
+  }
 });
 
-// 4. REGISTAR NOVA COMPRA NO MONGODB
-app.post('/api/pedidos', async (req, res) => {
-    try {
-        const { usuarioEmail, usuarioNome, itens, total, metodoPagamento } = req.body;
-
-        if (!usuarioEmail || !itens || itens.length === 0) {
-            return res.status(400).json({ mensagem: "Dados do pedido inválidos!" });
-        }
-
-        const novoPedido = {
-            usuarioEmail: usuarioEmail.toLowerCase(),
-            usuarioNome,
-            itens: itens.map(item => ({
-                livroId: item.livro._id,
-                titulo: item.livro.titulo,
-                formato: item.formato,
-                quantidade: item.quantidade,
-                precoUnitario: item.livro.preco
-            })),
-            total,
-            metodoPagamento,
-            status: 'CONCLUIDO',
-            dataCompra: new Date()
-        };
-
-        const resultado = await db.collection('compras').insertOne(novoPedido);
-
-        res.json({
-            sucesso: true,
-            mensagem: "Compra gravada na base de dados com sucesso!",
-            pedidoId: resultado.insertedId
-        });
-    } catch (erro) {
-        console.error("Erro ao gravar pedido:", erro);
-        res.status(500).json({ mensagem: "Erro ao gravar a compra." });
-    }
+app.post('/api/compras', async (req, res) => {
+  try {
+    const novaCompra = new Compra(req.body);
+    await novaCompra.save();
+    res.status(201).json(novaCompra);
+  } catch (error) {
+    res.status(500).json({ erro: 'Erro ao registar compra.' });
+  }
 });
 
-// 5. ROTA ADMIN: VER TODAS AS COMPRAS EFETUADAS NA LOJA
-app.get('/api/admin/compras', async (req, res) => {
-    try {
-        const compras = await db.collection('compras').find({}).sort({ dataCompra: -1 }).toArray();
-        res.json(compras);
-    } catch (erro) {
-        res.status(500).json({ mensagem: "Erro ao procurar compras." });
-    }
+// Rota principal (Serve o index.html)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const PORT = process.env.PORT || 3000;
+// Iniciar o Servidor
 app.listen(PORT, () => {
-    console.log(`🚀 Servidor ativo na porta ${PORT}`);
+  console.log(`🚀 Servidor ativo na porta ${PORT}`);
 });
