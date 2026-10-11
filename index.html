@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eBookStore — Livraria Digital Premium</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -35,16 +32,14 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.5; }
 
-    /* Top Announcement Bar */
-    .top-bar { background: var(--primary); color: #cbd5e1; text-align: center; padding: 6px 1rem; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.3px; }
+    .top-bar { background: var(--primary); color: #cbd5e1; text-align: center; padding: 6px 1rem; font-size: 0.8rem; font-weight: 500; }
     .top-bar strong { color: var(--accent); }
 
-    /* Header */
     header { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0.9rem 2rem; }
     .nav-container { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
     
     .logo-area { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); }
-    .logo-badge { background: var(--accent); color: #fff; font-size: 0.65rem; font-family: 'Inter', sans-serif; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .logo-badge { background: var(--accent); color: #fff; font-size: 0.65rem; font-family: 'Inter', sans-serif; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; font-weight: 800; }
     
     .nav-actions { display: flex; align-items: center; gap: 14px; }
     
@@ -55,10 +50,9 @@
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
     .btn-dark { background: var(--primary); color: #ffffff; }
 
-    /* Hero */
-    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 4rem 1rem 3.5rem; text-align: center; position: relative; }
+    .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #fff; padding: 4rem 1rem 3.5rem; text-align: center; }
     .hero-container { max-width: 800px; margin: 0 auto; }
-    .hero-chip { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #fbbf24; padding: 6px 16px; border-radius: 30px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: inline-block; margin-bottom: 1rem; }
+    .hero-chip { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.15); color: #fbbf24; padding: 6px 16px; border-radius: 30px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 1rem; }
     .hero h1 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.8rem; color: #f8fafc; }
     .hero p { color: #94a3b8; font-size: 1.05rem; margin-bottom: 2rem; max-width: 620px; margin-left: auto; margin-right: auto; }
     
@@ -66,21 +60,16 @@
     .search-bar input { width: 100%; padding: 15px 24px 15px 50px; border-radius: 40px; border: none; font-size: 0.95rem; outline: none; background: #ffffff; color: var(--text-main); box-shadow: var(--shadow-lg); }
     .search-bar svg { position: absolute; left: 18px; width: 20px; height: 20px; stroke: #94a3b8; }
 
-    /* Layout Main */
     .main-container { max-width: 1280px; margin: 2rem auto; padding: 0 1.5rem; }
-    
     .section-header { margin-bottom: 0.8rem; }
     .section-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 700; color: var(--primary); }
     
-    /* Categorias */
     .categories-bar { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0 18px 0; scrollbar-width: none; margin-bottom: 1.5rem; }
     .categories-bar::-webkit-scrollbar { display: none; }
     .cat-btn { padding: 10px 22px; border-radius: 25px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; font-size: 0.88rem; font-weight: 600; white-space: nowrap; transition: all 0.2s ease; }
     .cat-btn:hover, .cat-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); box-shadow: var(--shadow-sm); }
 
-    /* Grid do Catálogo */
     .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 2rem; }
-    
     .book-card { background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: all 0.3s ease; display: flex; flex-direction: column; }
     .book-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: #cbd5e1; }
     
@@ -108,26 +97,24 @@
     
     .card-actions { display: flex; gap: 6px; }
 
-    /* Modais */
-    .modal-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1.5rem; }
+    .modal-backdrop { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1.5rem; }
     .modal-backdrop.active { display: flex; animation: fadeIn 0.2s ease; }
     
     .modal-window { background: var(--surface); border-radius: 16px; max-width: 650px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg); border: 1px solid var(--border); position: relative; padding: 2rem; }
-    .close-btn { position: absolute; top: 18px; right: 20px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); transition: all 0.2s; }
+    .close-btn { position: absolute; top: 18px; right: 20px; background: #f1f5f9; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; color: var(--text-muted); }
     .close-btn:hover { background: #e2e8f0; color: var(--primary); }
 
-    /* Modal Detalhes */
     .preview-grid { display: grid; grid-template-columns: 200px 1fr; gap: 1.8rem; margin-top: 1rem; }
     @media (max-width: 600px) { .preview-grid { grid-template-columns: 1fr; } }
     
-    .preview-cover { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-md); }
+    .preview-cover { width: 100%; height: 280px; object-fit: cover; border-radius: var(--radius); }
     .preview-details h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 4px; }
     .preview-details .author { color: var(--text-muted); font-size: 0.95rem; font-weight: 500; margin-bottom: 1rem; }
     
     .meta-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.2rem; }
     .meta-pill { background: #f8fafc; border: 1px solid var(--border); color: var(--primary); font-size: 0.82rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; }
     
-    .synopsis { font-size: 0.9rem; color: #475569; line-height: 1.6; max-height: 120px; overflow-y: auto; margin-bottom: 1.2rem; padding-right: 5px; }
+    .synopsis { font-size: 0.9rem; color: #475569; line-height: 1.6; max-height: 120px; overflow-y: auto; margin-bottom: 1.2rem; }
 
     .selector-box { background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-bottom: 1.2rem; display: flex; gap: 15px; flex-wrap: wrap; }
     .field-group { flex: 1; min-width: 140px; }
@@ -136,10 +123,8 @@
 
     .qtd-picker { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; background: #fff; overflow: hidden; width: fit-content; }
     .qtd-picker button { border: none; background: #f1f5f9; width: 32px; height: 34px; font-size: 1rem; font-weight: bold; cursor: pointer; }
-    .qtd-picker button:hover { background: #e2e8f0; }
     .qtd-picker span { width: 36px; text-align: center; font-weight: 700; font-size: 0.9rem; }
 
-    /* Modal Login/Registro */
     .tab-header { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; }
     .tab-btn { flex: 1; padding: 12px; text-align: center; background: none; border: none; font-weight: 700; font-size: 0.95rem; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -148,7 +133,6 @@
     .form-input-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
     .form-input-group input { width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.95rem; outline: none; }
 
-    /* Checkout */
     .checkout-steps { display: flex; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); pb: 1rem; }
     .step-item { font-size: 0.82rem; font-weight: 700; color: #94a3b8; display: flex; align-items: center; gap: 6px; }
     .step-item.active { color: var(--accent); }
@@ -163,7 +147,6 @@
     .cart-item-info h4 { font-size: 0.95rem; color: var(--primary); font-weight: 700; }
     .cart-item-info p { font-size: 0.8rem; color: var(--text-muted); }
 
-    /* Toast System */
     #toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
     .toast-msg { background: var(--primary); color: #fff; padding: 14px 22px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 12px; border-left: 5px solid var(--accent); }
     
@@ -174,15 +157,12 @@
 </head>
 <body>
 
-  <!-- Toast Container -->
   <div id="toast-wrap"></div>
 
-  <!-- Barra Superior -->
   <div class="top-bar">
     🚀 <strong>Download Imediato:</strong> Receba os seus eBooks no e-mail em menos de 1 minuto após a compra!
   </div>
 
-  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="#" class="logo-area">
@@ -200,7 +180,6 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="hero-container">
       <span class="hero-chip">Livraria Digital Premium</span>
@@ -214,23 +193,20 @@
     </div>
   </section>
 
-  <!-- Conteudo Principal -->
   <main class="main-container">
     <div class="section-header">
       <h2 class="section-title">Explore por Categoria</h2>
     </div>
 
-    <!-- Barra de Categorias -->
     <div class="categories-bar" id="categories-container">
       <button class="cat-btn active" onclick="filtrarCategoria('Todos')">Todos os Livros</button>
     </div>
 
-    <!-- Status / Grid -->
     <div id="catalog-status" class="loading-state">⏳ A carregar o catálogo do MongoDB Atlas...</div>
     <div class="catalog-grid" id="catalog-grid"></div>
   </main>
 
-  <!-- MODAL 1: DETALHES DO LIVRO E PREVIEW -->
+  <!-- MODAL 1: PREVIEW -->
   <div class="modal-backdrop" id="modal-preview">
     <div class="modal-window">
       <button class="close-btn" onclick="fecharModais()">&times;</button>
@@ -250,7 +226,6 @@
 
           <div class="synopsis" id="prev-synopsis">Sinopse do livro...</div>
 
-          <!-- Opções de Formato e Qtd -->
           <div class="selector-box">
             <div class="field-group">
               <label>Formato Digital:</label>
@@ -288,7 +263,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: AUTENTICAÇÃO -->
+  <!-- MODAL 2: AUTH -->
   <div class="modal-backdrop" id="modal-auth">
     <div class="modal-window" style="max-width: 420px;">
       <button class="close-btn" onclick="fecharModais()">&times;</button>
@@ -321,7 +296,7 @@
     </div>
   </div>
 
-  <!-- MODAL 3: CHECKOUT & PAGAMENTO -->
+  <!-- MODAL 3: CHECKOUT -->
   <div class="modal-backdrop" id="modal-cart">
     <div class="modal-window" style="max-width: 580px;">
       <button class="close-btn" onclick="fecharModais()">&times;</button>
@@ -332,7 +307,6 @@
         <div class="step-item" id="step-3-title"><span class="step-num">3</span> Download</div>
       </div>
 
-      <!-- ETAPA 1: RESUMO DO CARRINHO -->
       <div id="checkout-step-1">
         <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 1rem; color: var(--primary);">Itens Selecionados</h3>
         <div id="cart-items-container" style="max-height: 260px; overflow-y: auto; margin-bottom: 1.5rem;"></div>
@@ -347,7 +321,6 @@
         </button>
       </div>
 
-      <!-- ETAPA 2: PAGAMENTO -->
       <div id="checkout-step-2" style="display: none;">
         <h3 style="font-family: 'Playfair Display', serif; margin-bottom: 0.5rem; color: var(--primary);">Forma de Pagamento</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Escolha como deseja pagar de forma 100% segura:</p>
@@ -398,7 +371,6 @@
         </div>
       </div>
 
-      <!-- ETAPA 3: SUCESSO -->
       <div id="checkout-step-3" style="display: none; text-align: center; padding: 1rem 0;">
         <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
         <h3 style="font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 0.5rem;">Pagamento Confirmado!</h3>
@@ -440,7 +412,6 @@
       return `R$ ${num.toFixed(2).replace('.', ',')}`;
     }
 
-    // RESOLUTOR DE AUTOR
     function resolverAutor(b) {
       let val = b.autor || b.author || b.autor_nome || b.nome_autor || b.escritor || b.authorName || b.nomeAutor || b.autores;
       if (!val) return 'Autor Desconhecido';
@@ -449,7 +420,6 @@
       return val;
     }
 
-    // RESOLUTOR DE CATEGORIA
     function resolverCategoria(b) {
       let val = b.categoria || b.genero || b.category || b.genre || b.generos || b.tags || b.categoria_nome || b.genero_literario;
       if (!val) return 'Geral';
@@ -458,28 +428,21 @@
       return String(val).trim();
     }
 
-    // RESOLUTOR DE CLASSIFICAÇÃO ETÁRIA INTELIGENTE
     function resolverClassificacaoEtaria(b) {
       const autor = resolverAutor(b).toLowerCase();
       const categoria = resolverCategoria(b).toLowerCase();
       const titulo = (b.titulo || b.title || '').toLowerCase();
 
-      // Regra 1: Dark Romance -> +18
       if (categoria.includes('dark romance') || categoria.includes('dark romancer') || titulo.includes('dark romance')) {
         return '+18';
       }
-
-      // Regra 2: Ali Hazelwood -> +18
       if (autor.includes('ali hazelwood') || autor.includes('hazelwood')) {
         return '+18';
       }
-
-      // Regra 3: Five Nights at Freddy's -> +12
       if (titulo.includes('five nights') || titulo.includes('freddy') || titulo.includes('fnaf')) {
         return '+12';
       }
 
-      // Se a base de dados tiver o campo explicitamente preenchido
       let val = b.classificacao_etaria || b.classificacaoEtaria || b.faixa_etaria || b.faixaEtaria || b.idade_minima || b.content_rating || b.age_rating || b.classificacao;
       if (val && String(val).trim() !== '' && String(val).trim().toLowerCase() !== 'livre') {
         let str = String(val).trim();
@@ -496,12 +459,10 @@
       return 'age-livre';
     }
 
-    // RESOLUTOR DE IMAGEM
     function resolverImagem(b) {
       return b.imagem || b.capa || b.cover || b.imagem_url || b.imagemUrl || b.capa_url || b.capaUrl || b.url_capa || b.url_imagem || b.link_capa || b.url || 'https://via.placeholder.com/200x300?text=Sem+Capa';
     }
 
-    // Carregar Catálogo
     async function carregarCatalogo() {
       const statusDiv = document.getElementById('catalog-status');
       try {
@@ -575,7 +536,6 @@
       }).join('');
     }
 
-    // Extrair Categorias
     function gerarCategorias(ebooks) {
       const container = document.getElementById('categories-container');
       const listaCategorias = ebooks.map(b => resolverCategoria(b)).filter(Boolean);
@@ -601,7 +561,6 @@
       exibirEbooks(filtrados);
     }
 
-    // Modal Detalhes
     function abrirPreview(idOuTitulo) {
       livroPreviewAtual = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
       if (!livroPreviewAtual) return;
@@ -639,7 +598,6 @@
       showToast(`Amostra do livro "${livroPreviewAtual.titulo}":\n📖 Capítulo 1: O Início da Jornada...`, 'warning');
     }
 
-    // Carrinho & Gestão
     function adicionarDiretoCarrinho(idOuTitulo) {
       const book = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
       if (book) adicionarAoCarrinho(book, 'ePUB', 1);
@@ -717,7 +675,6 @@
       document.getElementById('modal-cart').classList.add('active');
     }
 
-    // Checkout
     function avancarParaPagamento() {
       if (carrinho.length === 0) return showToast('O seu carrinho está vazio!', 'warning');
       if (!usuarioAtual) {
@@ -790,7 +747,6 @@
       }
     }
 
-    // Modal Autenticação
     function abrirModalAuth() {
       if (usuarioAtual) {
         if (confirm(`Deseja terminar a sessão de ${usuarioAtual.nome || usuarioAtual.email}?`)) {
@@ -813,38 +769,38 @@
     }
 
     async function processarAuth(e) {
-  e.preventDefault();
-  const email = document.getElementById('auth-email').value;
-  const senha = document.getElementById('auth-senha').value;
-  const nome = document.getElementById('auth-nome').value;
+      e.preventDefault();
+      const email = document.getElementById('auth-email').value;
+      const senha = document.getElementById('auth-senha').value;
+      const nome = document.getElementById('auth-nome').value;
 
-  const endpoint = modoAuth === 'login' ? '/api/usuarios/login' : '/api/usuarios/registro';
-  const body = modoAuth === 'login' ? { email, senha } : { nome, email, senha };
+      const endpoint = modoAuth === 'login' ? '/api/usuarios/login' : '/api/usuarios/registro';
+      const body = modoAuth === 'login' ? { email, senha } : { nome, email, senha };
 
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
 
-    const contentType = res.headers.get('content-type') || '';
-    if (!contentType.includes('application/json')) {
-      throw new Error('O servidor respondeu em formato HTML. Verifique se o Render concluiu o deploy do ficheiro servidor.js.');
+        const contentType = res.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+          throw new Error('O servidor respondeu em formato HTML. Verifique se o Render concluiu o deploy.');
+        }
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.erro || 'Erro no processo de autenticação.');
+
+        usuarioAtual = data;
+        localStorage.setItem('usuario_ebookstore', JSON.stringify(usuarioAtual));
+        fecharModais();
+        atualizarInterfaceUsuario();
+        showToast(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`, 'success');
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
     }
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.erro || 'Erro no processo de autenticação.');
-
-    usuarioAtual = data;
-    localStorage.setItem('usuario_ebookstore', JSON.stringify(usuarioAtual));
-    fecharModais();
-    atualizarInterfaceUsuario();
-    showToast(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`, 'success');
-  } catch (err) {
-    showToast(err.message, 'error');
-  }
-}
 
     function atualizarInterfaceUsuario() {
       const btn = document.getElementById('btn-auth');
@@ -864,7 +820,6 @@
 
     document.getElementById('search-input').addEventListener('input', () => filtrarCategoria('Todos'));
 
-    // Iniciar
     atualizarInterfaceUsuario();
     carregarCatalogo();
   </script>
