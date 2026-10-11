@@ -813,33 +813,38 @@
     }
 
     async function processarAuth(e) {
-      e.preventDefault();
-      const email = document.getElementById('auth-email').value;
-      const senha = document.getElementById('auth-senha').value;
-      const nome = document.getElementById('auth-nome').value;
+  e.preventDefault();
+  const email = document.getElementById('auth-email').value;
+  const senha = document.getElementById('auth-senha').value;
+  const nome = document.getElementById('auth-nome').value;
 
-      const endpoint = modoAuth === 'login' ? '/api/usuarios/login' : '/api/usuarios/registro';
-      const body = modoAuth === 'login' ? { email, senha } : { nome, email, senha };
+  const endpoint = modoAuth === 'login' ? '/api/usuarios/login' : '/api/usuarios/registro';
+  const body = modoAuth === 'login' ? { email, senha } : { nome, email, senha };
 
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-        const data = await res.json();
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
 
-        if (!res.ok) throw new Error(data.erro || 'Erro no processo de autenticação.');
-
-        usuarioAtual = data;
-        localStorage.setItem('usuario_ebookstore', JSON.stringify(usuarioAtual));
-        fecharModais();
-        atualizarInterfaceUsuario();
-        showToast(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`, 'success');
-      } catch (err) {
-        showToast(err.message, 'error');
-      }
+    const contentType = res.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      throw new Error('O servidor respondeu em formato HTML. Verifique se o Render concluiu o deploy do ficheiro servidor.js.');
     }
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.erro || 'Erro no processo de autenticação.');
+
+    usuarioAtual = data;
+    localStorage.setItem('usuario_ebookstore', JSON.stringify(usuarioAtual));
+    fecharModais();
+    atualizarInterfaceUsuario();
+    showToast(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`, 'success');
+  } catch (err) {
+    showToast(err.message, 'error');
+  }
+}
 
     function atualizarInterfaceUsuario() {
       const btn = document.getElementById('btn-auth');
