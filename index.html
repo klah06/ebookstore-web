@@ -1,78 +1,101 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eBookStore - Livraria Digital Premium</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f8f6; color: #333; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background-color: #f9f8f6; color: #1f2937; }
     
     /* Header */
-    header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); sticky: top; }
-    .logo-area { font-weight: bold; font-size: 1.4rem; color: #d97706; text-decoration: none; }
-    .nav-buttons { display: flex; gap: 10px; align-items: center; }
-    .btn { padding: 8px 16px; border-radius: 20px; border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; }
-    .btn-outline { background: transparent; border: 1px solid #d97706; color: #d97706; }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+    .logo-area { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.5rem; color: #d97706; }
+    .logo-area img { height: 38px; width: auto; object-fit: contain; }
+    .nav-buttons { display: flex; gap: 12px; align-items: center; }
+    .btn { padding: 8px 18px; border-radius: 20px; border: none; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-outline { background: transparent; border: 1.5px solid #d97706; color: #d97706; }
+    .btn-outline:hover { background: #fffbe2; }
     .btn-primary { background: #d97706; color: #fff; }
+    .btn-primary:hover { background: #b45309; }
     .btn-secondary { background: #4b5563; color: #fff; }
 
     /* Hero */
-    .hero { background: #111827; color: #fff; text-align: center; padding: 3rem 1rem; }
-    .hero span { background: #374151; color: #f59e0b; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; }
-    .hero h1 { font-size: 2.2rem; margin: 1rem 0; font-family: serif; }
-    .hero p { color: #9ca3af; margin-bottom: 1.5rem; }
-    .search-box { max-width: 500px; margin: 0 auto; position: relative; }
-    .search-box input { width: 100%; padding: 12px 20px; border-radius: 25px; border: none; font-size: 0.95rem; outline: none; }
+    .hero { background: #0f172a; color: #fff; text-align: center; padding: 3.5rem 1rem; }
+    .hero span { background: #334155; color: #fbbf24; padding: 5px 14px; border-radius: 15px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+    .hero h1 { font-size: 2.4rem; margin: 1.2rem 0 0.8rem; font-family: Georgia, serif; }
+    .hero p { color: #94a3b8; margin-bottom: 1.8rem; font-size: 1.05rem; }
+    .search-box { max-width: 520px; margin: 0 auto; position: relative; }
+    .search-box input { width: 100%; padding: 14px 22px; border-radius: 30px; border: none; font-size: 0.95rem; outline: none; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
 
-    /* Layout */
+    /* Layout & Filtros */
     .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
     .categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
-    .cat-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #e5e7eb; background: #fff; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
-    .cat-btn.active { background: #d97706; color: #fff; border-color: #d97706; }
+    .cat-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #e5e7eb; background: #fff; cursor: pointer; font-size: 0.9rem; font-weight: 600; color: #4b5563; transition: all 0.2s; }
+    .cat-btn.active, .cat-btn:hover { background: #d97706; color: #fff; border-color: #d97706; }
 
-    /* Catálogo */
-    .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; }
-    .book-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; transition: transform 0.2s; }
-    .book-card:hover { transform: translateY(-5px); }
-    .book-cover-wrap { height: 260px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; }
+    /* Catálogo de Livros */
+    .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.8rem; }
+    .book-card { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #f3f4f6; }
+    .book-card:hover { transform: translateY(-6px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .book-cover-wrap { height: 280px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer; position: relative; }
     .book-cover-wrap img { width: 100%; height: 100%; object-fit: cover; }
-    .book-details { padding: 1rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .book-title { font-size: 1rem; font-weight: bold; margin-bottom: 0.3rem; color: #111827; }
-    .book-author { font-size: 0.85rem; color: #6b7280; margin-bottom: 0.8rem; }
-    .book-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; gap: 5px; }
-    .book-price { font-size: 1.1rem; font-weight: bold; color: #059669; }
+    .book-badge-format { position: absolute; top: 10px; right: 10px; background: rgba(15, 23, 42, 0.85); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; backdrop-filter: blur(4px); }
     
-    /* Modais */
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
-    .modal-overlay.active { display: flex; }
-    .modal-content { background: #fff; border-radius: 12px; max-width: 600px; width: 100%; padding: 1.5rem; max-height: 90vh; overflow-y: auto; position: relative; }
-    .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; cursor: pointer; border: none; background: transparent; }
-    
-    /* Pre-visualização */
-    .preview-body { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
-    .preview-img { width: 180px; height: 260px; object-fit: cover; border-radius: 8px; }
-    .preview-info { flex: 1; min-width: 220px; }
-    .preview-synopsis { margin: 1rem 0; font-size: 0.9rem; color: #4b5563; line-height: 1.5; max-height: 150px; overflow-y: auto; }
+    .book-details { padding: 1.1rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .book-rating { font-size: 0.82rem; color: #f59e0b; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+    .book-rating span { color: #6b7280; font-weight: normal; font-size: 0.78rem; }
+    .book-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; color: #111827; line-height: 1.3; }
+    .book-author { font-size: 0.88rem; color: #6b7280; margin-bottom: 1rem; }
+    .book-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; pt: 0.5rem; border-top: 1px solid #f3f4f6; }
+    .book-price { font-size: 1.15rem; font-weight: 800; color: #059669; }
+    .book-actions { display: flex; gap: 6px; }
 
-    /* Formulários Modal */
-    .form-group { margin-bottom: 1rem; }
-    .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 600; }
-    .form-group input { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #d1d5db; }
+    /* Sistema de Notificação Toast */
+    #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+    .toast { background: #1e293b; color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 20px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; }
+    .toast.success { border-left: 5px solid #10b981; }
+    .toast.warning { border-left: 5px solid #f59e0b; }
+    .toast.error { border-left: 5px solid #ef4444; }
+    @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+    /* Modais */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(3px); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1rem; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: #fff; border-radius: 16px; max-width: 680px; width: 100%; padding: 1.8rem; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+    .close-modal { position: absolute; top: 18px; right: 20px; font-size: 1.6rem; cursor: pointer; border: none; background: transparent; color: #6b7280; }
+    .close-modal:hover { color: #111827; }
+
+    /* Detalhes / Pré-Visualização */
+    .preview-header { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+    .preview-img { width: 190px; height: 270px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .preview-info { flex: 1; min-width: 240px; }
+    .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 1rem 0; background: #f8fafc; padding: 12px; border-radius: 10px; font-size: 0.85rem; }
+    .meta-item strong { color: #334155; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .preview-synopsis { font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 1rem 0; max-height: 160px; overflow-y: auto; padding-right: 5px; }
+
+    /* Carrinho & Formulários */
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: #374151; }
+    .form-group input { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #d1d5db; outline: none; font-size: 0.95rem; }
     
-    /* Carrinho */
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
-    
-    .loading-spinner { text-align: center; padding: 3rem; color: #6b7280; }
-    .error-message { text-align: center; color: #dc2626; padding: 2rem; background: #fee2e2; border-radius: 8px; }
+    .loading-spinner { text-align: center; padding: 3rem; color: #6b7280; font-size: 1.1rem; }
+    .error-message { text-align: center; color: #dc2626; padding: 2rem; background: #fee2e2; border-radius: 10px; font-weight: 600; }
   </style>
 </head>
 <body>
 
+  <!-- Container de Notificações Toast -->
+  <div id="toast-container"></div>
+
   <header>
-    <a href="#" class="logo-area">📚 eBookStore</a>
+    <a href="#" class="logo-area">
+      <img src="logo.png" alt="Logo" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/3389/3389081.png'">
+      <span>eBookStore</span>
+    </a>
     <div class="nav-buttons">
-      <span id="user-display" style="font-size: 0.9rem; font-weight: 600;"></span>
+      <span id="user-display" style="font-size: 0.9rem; font-weight: 700; color: #374151;"></span>
       <button class="btn btn-outline" id="btn-auth" onclick="abrirModalAuth()">👤 Entrar</button>
       <button class="btn btn-primary" onclick="abrirModalCarrinho()">🛒 Carrinho (<span id="cart-count">0</span>)</button>
     </div>
@@ -96,20 +119,49 @@
     <div class="catalog-grid" id="catalog-grid"></div>
   </main>
 
-  <!-- MODAL 1: PRÉ-VISUALIZAÇÃO / DETALHES -->
+  <!-- MODAL 1: PRÉ-VISUALIZAÇÃO / DETALHES COMPLETOS DO LIVRO -->
   <div class="modal-overlay" id="modal-preview">
     <div class="modal-content">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
-      <h2 id="prev-title">Título do Livro</h2>
-      <p id="prev-author" style="color: #6b7280; font-size: 0.9rem; margin-top: 4px;"></p>
+      <h2 id="prev-title" style="font-size: 1.4rem; color: #0f172a;">Título do Livro</h2>
+      <p id="prev-author" style="color: #64748b; font-size: 0.95rem; margin-top: 2px; font-weight: 600;"></p>
       
-      <div class="preview-body">
+      <div class="preview-header">
         <img id="prev-img" class="preview-img" src="" alt="Capa">
         <div class="preview-info">
-          <p id="prev-category" style="font-size: 0.8rem; background: #f3f4f6; display: inline-block; padding: 2px 8px; border-radius: 10px;"></p>
-          <div class="preview-synopsis" id="prev-synopsis">Carregando sinopse...</div>
-          <h3 id="prev-price" style="color: #059669; margin-bottom: 1rem;"></h3>
-          <button class="btn btn-primary" id="prev-buy-btn" style="width: 100%;">Adicionar ao Carrinho</button>
+          
+          <div class="meta-grid">
+            <div class="meta-item">
+              <strong>Classificação</strong>
+              <span id="prev-rating" style="color: #d97706; font-weight: bold;">⭐ 4.8 / 5.0</span>
+            </div>
+            <div class="meta-item">
+              <strong>Formato Ficheiro</strong>
+              <span id="prev-format">ePUB / PDF</span>
+            </div>
+            <div class="meta-item">
+              <strong>Páginas</strong>
+              <span id="prev-pages">~280 págs</span>
+            </div>
+            <div class="meta-item">
+              <strong>Idioma</strong>
+              <span id="prev-language">Português</span>
+            </div>
+          </div>
+
+          <div class="preview-synopsis" id="prev-synopsis">Sinopse do livro...</div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; pt: 0.8rem; border-top: 1px solid #e2e8f0;">
+            <div>
+              <span style="font-size: 0.8rem; color: #64748b; display: block;">Preço Digital</span>
+              <h3 id="prev-price" style="color: #059669; font-size: 1.4rem;">R$ 0,00</h3>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-outline" id="prev-sample-btn" onclick="abrirAmostra()">📖 Amostra</button>
+              <button class="btn btn-primary" id="prev-buy-btn">🛒 Comprar</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -117,9 +169,9 @@
 
   <!-- MODAL 2: AUTENTICAÇÃO (LOGIN / REGISTO) -->
   <div class="modal-overlay" id="modal-auth">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 440px;">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
-      <h2 id="auth-title" style="margin-bottom: 1rem;">Iniciar Sessão</h2>
+      <h2 id="auth-title" style="margin-bottom: 1.2rem; color: #0f172a;">Iniciar Sessão</h2>
       
       <form id="auth-form" onsubmit="processarAuth(event)">
         <div class="form-group" id="group-nome" style="display: none;">
@@ -128,37 +180,37 @@
         </div>
         <div class="form-group">
           <label>E-mail</label>
-          <input type="email" id="auth-email" required>
+          <input type="email" id="auth-email" required placeholder="seu@email.com">
         </div>
         <div class="form-group">
           <label>Palavra-passe</label>
-          <input type="password" id="auth-senha" required>
+          <input type="password" id="auth-senha" required placeholder="••••••••">
         </div>
         
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" id="auth-submit-btn">Entrar</button>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem; justify-content: center; padding: 12px;" id="auth-submit-btn">Entrar</button>
       </form>
       
-      <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: #6b7280;">
+      <p style="text-align: center; margin-top: 1.2rem; font-size: 0.88rem; color: #64748b;">
         <span id="auth-toggle-msg">Ainda não tem conta?</span> 
-        <a href="#" id="auth-toggle-link" style="color: #d97706; font-weight: bold;" onclick="alternarModoAuth()">Criar conta</a>
+        <a href="#" id="auth-toggle-link" style="color: #d97706; font-weight: 700; text-decoration: none;" onclick="alternarModoAuth()">Criar conta</a>
       </p>
     </div>
   </div>
 
-  <!-- MODAL 3: CARRINHO E CHECKOUT -->
+  <!-- MODAL 3: CARRINHO DE COMPRAS -->
   <div class="modal-overlay" id="modal-cart">
-    <div class="modal-content">
+    <div class="modal-content" style="max-width: 520px;">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
-      <h2>O Teu Carrinho</h2>
+      <h2 style="color: #0f172a; margin-bottom: 0.5rem;">O Teu Carrinho</h2>
       
-      <div id="cart-items-container" style="margin: 1.5rem 0;"></div>
+      <div id="cart-items-container" style="margin: 1.2rem 0; max-height: 280px; overflow-y: auto;"></div>
       
-      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f3f4f6; padding-top: 1rem;">
-        <h3>Total:</h3>
-        <h3 id="cart-total" style="color: #059669;">0.00 €</h3>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f1f5f9; padding-top: 1rem; margin-top: 1rem;">
+        <span style="font-size: 1.1rem; font-weight: 700; color: #334155;">Total:</span>
+        <h3 id="cart-total" style="color: #059669; font-size: 1.4rem;">R$ 0,00</h3>
       </div>
       
-      <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="finalizarCompra()">Finalizar Compra</button>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; justify-content: center; padding: 12px;" onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
   </div>
 
@@ -166,9 +218,29 @@
     let todosEbooks = [];
     let carrinho = [];
     let usuarioAtual = JSON.parse(localStorage.getItem('usuario_ebookstore')) || null;
-    let modoAuth = 'login'; // 'login' ou 'registro'
+    let modoAuth = 'login';
+    let livroPreviewAtual = null;
 
-    // Resolver Autor Flexível (Trata Strings, Objetos e Arrays da BD)
+    // Sistema de Notificações Toast (Substitui os alerts nativos do navegador)
+    function showToast(mensagem, tipo = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${tipo}`;
+      
+      const icones = { success: '✅', warning: '⚠️', error: '❌' };
+      toast.innerHTML = `<span>${icones[tipo] || 'ℹ️'}</span> <div>${mensagem}</div>`;
+      
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    // Formatar moeda para Reais (R$)
+    function formatarPreco(valor) {
+      const num = typeof valor === 'number' ? valor : parseFloat(valor) || 0;
+      return `R$ ${num.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Resolver Autor Flexível
     function resolverAutor(b) {
       let val = b.autor || b.author || b.autor_nome || b.nome_autor || b.escritor || b.authorName || b.nomeAutor || b.autores;
       if (!val) return 'Autor Desconhecido';
@@ -211,7 +283,7 @@
     function exibirEbooks(ebooks) {
       const grid = document.getElementById('catalog-grid');
       if (ebooks.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem;">Nenhum eBook encontrado.</p>';
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #64748b;">Nenhum eBook encontrado com estes critérios.</p>';
         return;
       }
 
@@ -219,20 +291,27 @@
         const imagem = resolverImagem(b);
         const autor = resolverAutor(b);
         const titulo = b.titulo || b.title || 'Sem Título';
-        const preco = typeof b.preco === 'number' ? b.preco.toFixed(2) : (b.preco || '0.00');
+        const precoFormatted = formatarPreco(b.preco);
+        const formato = b.formato || b.format || 'ePUB/PDF';
+        const avaliacao = b.avaliacao || b.rating || b.classificacao || '4.8';
+        const avaliacoesCount = b.avaliacoes_count || b.reviews || '120';
 
         return `
           <div class="book-card">
             <div class="book-cover-wrap" onclick="abrirPreview('${b._id || titulo}')">
+              <span class="book-badge-format">${formato}</span>
               <img src="${imagem}" alt="${titulo}" onerror="this.src='https://via.placeholder.com/200x300?text=Sem+Capa'">
             </div>
             <div class="book-details">
+              <div class="book-rating">⭐ ${avaliacao} <span>(${avaliacoesCount})</span></div>
               <div class="book-title">${titulo}</div>
               <div class="book-author">${autor}</div>
               <div class="book-footer">
-                <div class="book-price">${preco} €</div>
-                <button class="btn btn-outline" style="padding: 4px 8px; font-size: 0.75rem;" onclick="abrirPreview('${b._id || titulo}')">👁️ Ver</button>
-                <button class="btn btn-primary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="adicionarAoCarrinho('${b._id || titulo}')">🛒</button>
+                <div class="book-price">${precoFormatted}</div>
+                <div class="book-actions">
+                  <button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;" onclick="abrirPreview('${b._id || titulo}')">👁️ Ver</button>
+                  <button class="btn btn-primary" style="padding: 5px 12px; font-size: 0.8rem;" onclick="adicionarAoCarrinho('${b._id || titulo}')">🛒</button>
+                </div>
               </div>
             </div>
           </div>
@@ -248,6 +327,7 @@
     }
 
     function filtrarCategoria(cat) {
+      document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.toggle('active', btn.innerText === cat));
       const termo = document.getElementById('search-input').value.toLowerCase();
       const filtrados = todosEbooks.filter(b => {
         const c = (b.categoria || b.genero || '').toLowerCase();
@@ -258,22 +338,39 @@
       exibirEbooks(filtrados);
     }
 
-    // Modal Pré-Visualização
+    // Modal Pré-Visualização / Detalhes completos
     function abrirPreview(idOuTitulo) {
-      const book = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
-      if (!book) return;
+      livroPreviewAtual = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
+      if (!livroPreviewAtual) return;
 
-      document.getElementById('prev-title').innerText = book.titulo || book.title || 'Sem Título';
-      document.getElementById('prev-author').innerText = 'Por ' + resolverAutor(book);
-      document.getElementById('prev-img').src = resolverImagem(book);
-      document.getElementById('prev-category').innerText = book.categoria || book.genero || 'Geral';
-      document.getElementById('prev-synopsis').innerText = book.sinopse || book.descricao || book.description || 'Este eBook está disponível para leitura imediata após a compra.';
-      document.getElementById('prev-price').innerText = (book.preco || '0.00') + ' €';
+      const b = livroPreviewAtual;
+      document.getElementById('prev-title').innerText = b.titulo || b.title || 'Sem Título';
+      document.getElementById('prev-author').innerText = 'Por ' + resolverAutor(b);
+      document.getElementById('prev-img').src = resolverImagem(b);
       
-      const btn = document.getElementById('prev-buy-btn');
-      btn.onclick = () => { adicionarAoCarrinho(book._id || book.titulo); fecharModais(); };
+      document.getElementById('prev-rating').innerText = `⭐ ${b.avaliacao || b.rating || '4.8'} / 5.0 (${b.avaliacoes_count || '120'} avaliações)`;
+      document.getElementById('prev-format').innerText = b.formato || b.format || 'ePUB / PDF';
+      document.getElementById('prev-pages').innerText = (b.paginas || b.pages || '250') + ' págs';
+      document.getElementById('prev-language').innerText = b.idioma || b.language || 'Português';
+
+      document.getElementById('prev-synopsis').innerText = b.sinopse || b.descricao || b.description || 'Este eBook está disponível para leitura imediata em todos os seus dispositivos após a confirmação da compra.';
+      document.getElementById('prev-price').innerText = formatarPreco(b.preco);
+      
+      const btnBuy = document.getElementById('prev-buy-btn');
+      btnBuy.onclick = () => { adicionarAoCarrinho(b._id || b.titulo); fecharModais(); };
 
       document.getElementById('modal-preview').classList.add('active');
+    }
+
+    function abrirAmostra() {
+      if (!livroPreviewAtual) return;
+      const amostraUrl = livroPreviewAtual.amostra_url || livroPreviewAtual.amostra || livroPreviewAtual.sample_url;
+      if (amostraUrl && amostraUrl.startsWith('http')) {
+        window.open(amostraUrl, '_blank');
+      } else {
+        showToast(`Amostra do livro "${livroPreviewAtual.titulo}":
+\nCapítulo 1: Começo da jornada... O conhecimento está ao seu alcance!`, 'warning');
+      }
     }
 
     // Modal Autenticação
@@ -283,6 +380,7 @@
           usuarioAtual = null;
           localStorage.removeItem('usuario_ebookstore');
           atualizarInterfaceUsuario();
+          showToast('Sessão terminada.', 'warning');
         }
         return;
       }
@@ -321,9 +419,9 @@
         localStorage.setItem('usuario_ebookstore', JSON.stringify(usuarioAtual));
         fecharModais();
         atualizarInterfaceUsuario();
-        alert(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`);
+        showToast(`Bem-vindo(a), ${usuarioAtual.nome || usuarioAtual.email}!`, 'success');
       } catch (err) {
-        alert('⚠️ ' + err.message);
+        showToast(err.message, 'error');
       }
     }
 
@@ -345,7 +443,7 @@
       if (book) {
         carrinho.push(book);
         document.getElementById('cart-count').innerText = carrinho.length;
-        alert(`"${book.titulo || 'eBook'}" foi adicionado ao carrinho!`);
+        showToast(`"${book.titulo || 'eBook'}" foi adicionado ao carrinho!`, 'success');
       }
     }
 
@@ -354,8 +452,8 @@
       const totalSpan = document.getElementById('cart-total');
 
       if (carrinho.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #6b7280;">O teu carrinho está vazio.</p>';
-        totalSpan.innerText = '0.00 €';
+        container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1.5rem 0;">O teu carrinho está vazio.</p>';
+        totalSpan.innerText = 'R$ 0,00';
       } else {
         let total = 0;
         container.innerHTML = carrinho.map((item, idx) => {
@@ -364,17 +462,17 @@
           return `
             <div class="cart-item">
               <div>
-                <strong>${item.titulo || 'eBook'}</strong><br>
-                <small style="color: #6b7280;">${resolverAutor(item)}</small>
+                <strong style="color: #1e293b;">${item.titulo || 'eBook'}</strong><br>
+                <small style="color: #64748b;">${resolverAutor(item)}</small>
               </div>
-              <div>
-                <span>${preco.toFixed(2)} €</span>
-                <button style="margin-left: 10px; color: red; border: none; background: transparent; cursor: pointer;" onclick="removerDoCarrinho(${idx})">🗑️</button>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-weight: 700; color: #059669;">${formatarPreco(item.preco)}</span>
+                <button style="color: #ef4444; border: none; background: transparent; cursor: pointer; font-size: 1.1rem;" onclick="removerDoCarrinho(${idx})">🗑️</button>
               </div>
             </div>
           `;
         }).join('');
-        totalSpan.innerText = total.toFixed(2) + ' €';
+        totalSpan.innerText = formatarPreco(total);
       }
 
       document.getElementById('modal-cart').classList.add('active');
@@ -384,13 +482,17 @@
       carrinho.splice(idx, 1);
       document.getElementById('cart-count').innerText = carrinho.length;
       abrirModalCarrinho();
+      showToast('Item removido do carrinho.', 'warning');
     }
 
     async function finalizarCompra() {
-      if (carrinho.length === 0) return alert('O teu carrinho está vazio!');
+      if (carrinho.length === 0) {
+        showToast('O teu carrinho está vazio!', 'warning');
+        return;
+      }
 
       if (!usuarioAtual) {
-        alert('Precisas de iniciar sessão para concluir a compra.');
+        showToast('Precisas de iniciar sessão para concluir a compra.', 'warning');
         fecharModais();
         abrirModalAuth();
         return;
@@ -413,12 +515,12 @@
 
         if (!res.ok) throw new Error('Erro ao guardar a compra na base de dados.');
 
-        alert('🎉 Compra efetuada com sucesso! O teu pedido foi gravado no MongoDB Atlas.');
+        showToast('🎉 Compra efetuada com sucesso! Pedido registado no MongoDB Atlas.', 'success');
         carrinho = [];
         document.getElementById('cart-count').innerText = '0';
         fecharModais();
       } catch (err) {
-        alert('⚠️ ' + err.message);
+        showToast(err.message, 'error');
       }
     }
 
