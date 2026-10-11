@@ -153,36 +153,44 @@
       exibirEbooks(filtrados);
     }
 
-    function exibirEbooks(ebooks) {
-      const grid = document.getElementById('catalog-grid');
-      if (ebooks.length === 0) {
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Nenhum eBook encontrado com esses critérios.</p>';
-        return;
-      }
+   function exibirEbooks(ebooks) {
+  const grid = document.getElementById('catalog-grid');
+  if (ebooks.length === 0) {
+    grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #6b7280; padding: 2rem;">Nenhum eBook encontrado com esses critérios.</p>';
+    return;
+  }
 
-      grid.innerHTML = ebooks.map(b => {
-        const imagem = b.imagem || b.capa || b.cover || (b.imagem_url ? b.imagem_url : 'https://via.placeholder.com/200x300?text=eBook');
-        const titulo = b.titulo || b.title || 'Sem Título';
-        const autor = b.autor || b.author || 'Autor Desconhecido';
-        const preco = typeof b.preco === 'number' ? b.preco.toFixed(2) : (b.preco || '0.00');
+  // Imprime no console para saberes a estrutura exata dos teus dados no MongoDB
+  console.log('Exemplo de eBook da base de dados:', ebooks[0]);
 
-        return `
-          <div class="book-card">
-            <div class="book-cover-wrap">
-              <img src="${imagem}" alt="${titulo}" onerror="this.src='https://via.placeholder.com/200x300?text=Sem+Capa'">
-            </div>
-            <div class="book-details">
-              <div class="book-title">${titulo}</div>
-              <div class="book-author">${autor}</div>
-              <div class="book-footer">
-                <div class="book-price">${preco} €</div>
-                <button class="btn-buy" onclick="adicionarCarrinho('${b._id || titulo}')">Comprar</button>
-              </div>
-            </div>
+  grid.innerHTML = ebooks.map(b => {
+    // Procura por todas as variações comuns de campo de imagem/capa
+    const imagem = b.imagem || b.capa || b.cover || b.imagem_url || b.imagemUrl || b.capa_url || b.capaUrl || b.url_capa || b.url_imagem || b.link_capa || b.link_imagem || b.url || 'https://via.placeholder.com/200x300?text=Sem+Capa';
+    
+    // Procura por todas as variações comuns de campo de autor
+    const autor = b.autor || b.author || b.autor_nome || b.nome_autor || b.escritor || 'Autor Desconhecido';
+    
+    // Preço
+    const preco = typeof b.preco === 'number' ? b.preco.toFixed(2) : (b.preco || '0.00');
+    const titulo = b.titulo || b.title || 'Sem Título';
+
+    return `
+      <div class="book-card">
+        <div class="book-cover-wrap">
+          <img src="${imagem}" alt="${titulo}" onerror="this.src='https://via.placeholder.com/200x300?text=Sem+Capa'">
+        </div>
+        <div class="book-details">
+          <div class="book-title">${titulo}</div>
+          <div class="book-author">${autor}</div>
+          <div class="book-footer">
+            <div class="book-price">${preco} €</div>
+            <button class="btn-buy" onclick="adicionarCarrinho('${b._id || titulo}')">Comprar</button>
           </div>
-        `;
-      }).join('');
-    }
+        </div>
+      </div>
+    `;
+  }).join('');
+}
 
     function adicionarCarrinho(id) {
       const count = document.getElementById('cart-count');
