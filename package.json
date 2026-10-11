@@ -1,7 +1,6 @@
 {
   "name": "ebookstore-web",
   "version": "1.0.0",
-  "description": "Loja de eBooks",
   "main": "servidor.js",
   "scripts": {
     "start": "node servidor.js"
