@@ -677,7 +677,7 @@
             }
         });
 
-        fetch('http://localhost:3000/api/ebooks')
+        fetch('/api/ebooks/api/ebooks')
             .then(res => res.json())
             .then(livros => {
                 todosOsLivros = livros;
@@ -687,7 +687,7 @@
             .catch(err => {
                 console.error(err);
                 document.getElementById('catalogo').innerHTML = 
-                    '<p style="color:#e53e3e; grid-column:1/-1; text-align:center; padding: 60px;">Erro ao carregar o catálogo. Confirma se o teu servidor Node.js está ativo em http://localhost:3000</p>';
+                    '<p style="color:#e53e3e; grid-column:1/-1; text-align:center; padding: 60px;">Erro ao carregar o catálogo. Confirma se o teu servidor Node.js está ativo em /api/ebooks</p>';
             });
 
         function voltarAoTopo() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -1220,7 +1220,7 @@ Aproveita a tua leitura!
             }
 
             try {
-                const res = await fetch('http://localhost:3000/api/login', {
+                const res = await fetch('/api/ebooks/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, senha })
@@ -1270,7 +1270,7 @@ Aproveita a tua leitura!
             }
 
             try {
-                const res = await fetch('http://localhost:3000/api/registro', {
+                const res = await fetch('/api/ebooks/api/registro', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ nome, email, senha })
