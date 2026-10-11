@@ -18,7 +18,6 @@
     .btn-outline:hover { background: #fffbe2; }
     .btn-primary { background: #d97706; color: #fff; }
     .btn-primary:hover { background: #b45309; }
-    .btn-secondary { background: #4b5563; color: #fff; }
 
     /* Hero */
     .hero { background: #0f172a; color: #fff; text-align: center; padding: 3.5rem 1rem; }
@@ -44,14 +43,13 @@
     
     .book-details { padding: 1.1rem; display: flex; flex-direction: column; flex-grow: 1; }
     .book-rating { font-size: 0.82rem; color: #f59e0b; margin-bottom: 0.3rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-    .book-rating span { color: #6b7280; font-weight: normal; font-size: 0.78rem; }
     .book-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; color: #111827; line-height: 1.3; }
     .book-author { font-size: 0.88rem; color: #6b7280; margin-bottom: 1rem; }
-    .book-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; pt: 0.5rem; border-top: 1px solid #f3f4f6; }
+    .book-footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 0.5rem; border-top: 1px solid #f3f4f6; }
     .book-price { font-size: 1.15rem; font-weight: 800; color: #059669; }
     .book-actions { display: flex; gap: 6px; }
 
-    /* Sistema de Notificação Toast */
+    /* Notificações Toast */
     #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
     .toast { background: #1e293b; color: #fff; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 5px 20px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; }
     .toast.success { border-left: 5px solid #10b981; }
@@ -64,18 +62,29 @@
     .modal-overlay.active { display: flex; }
     .modal-content { background: #fff; border-radius: 16px; max-width: 680px; width: 100%; padding: 1.8rem; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
     .close-modal { position: absolute; top: 18px; right: 20px; font-size: 1.6rem; cursor: pointer; border: none; background: transparent; color: #6b7280; }
-    .close-modal:hover { color: #111827; }
 
-    /* Detalhes / Pré-Visualização */
+    /* Detalhes do Livro */
     .preview-header { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
     .preview-img { width: 190px; height: 270px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
     .preview-info { flex: 1; min-width: 240px; }
-    .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 1rem 0; background: #f8fafc; padding: 12px; border-radius: 10px; font-size: 0.85rem; }
+    .meta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0.8rem 0; background: #f8fafc; padding: 12px; border-radius: 10px; font-size: 0.85rem; }
     .meta-item strong { color: #334155; display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
-    .preview-synopsis { font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 1rem 0; max-height: 160px; overflow-y: auto; padding-right: 5px; }
+    .preview-synopsis { font-size: 0.92rem; color: #475569; line-height: 1.6; margin: 0.8rem 0; max-height: 140px; overflow-y: auto; padding-right: 5px; }
 
-    /* Carrinho & Formulários */
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
+    /* Seletor de Formato e Quantidade no Modal */
+    .selector-group { display: flex; gap: 15px; margin: 1rem 0; flex-wrap: wrap; background: #fffbe2; padding: 12px; border-radius: 10px; border: 1px solid #fef3c7; }
+    .selector-item { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 130px; }
+    .selector-item label { font-size: 0.78rem; font-weight: 700; color: #92400e; text-transform: uppercase; }
+    .selector-item select { padding: 8px 12px; border-radius: 8px; border: 1px solid #fcd34d; background: #fff; font-weight: 600; font-size: 0.9rem; color: #1e293b; outline: none; }
+    
+    .qtd-counter { display: flex; align-items: center; border: 1px solid #fcd34d; border-radius: 8px; background: #fff; width: fit-content; overflow: hidden; }
+    .qtd-btn { border: none; background: #fef3c7; color: #92400e; width: 32px; height: 34px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+    .qtd-btn:hover { background: #fde68a; }
+    .qtd-val { width: 38px; text-align: center; font-weight: 700; font-size: 0.95rem; }
+
+    /* Carrinho */
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f5f9; gap: 10px; }
+    .cart-format-badge { background: #e2e8f0; color: #334155; font-size: 0.75rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 3px; }
     .form-group { margin-bottom: 1.1rem; }
     .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: #374151; }
     .form-group input { width: 100%; padding: 11px; border-radius: 8px; border: 1px solid #d1d5db; outline: none; font-size: 0.95rem; }
@@ -86,7 +95,6 @@
 </head>
 <body>
 
-  <!-- Container de Notificações Toast -->
   <div id="toast-container"></div>
 
   <header>
@@ -119,7 +127,7 @@
     <div class="catalog-grid" id="catalog-grid"></div>
   </main>
 
-  <!-- MODAL 1: PRÉ-VISUALIZAÇÃO / DETALHES COMPLETOS DO LIVRO -->
+  <!-- MODAL: DETALHES DO LIVRO, SELEÇÃO DE FORMATO E QUANTIDADE -->
   <div class="modal-overlay" id="modal-preview">
     <div class="modal-content">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
@@ -133,32 +141,53 @@
           <div class="meta-grid">
             <div class="meta-item">
               <strong>Classificação</strong>
-              <span id="prev-rating" style="color: #d97706; font-weight: bold;">⭐ 4.8 / 5.0</span>
-            </div>
-            <div class="meta-item">
-              <strong>Formato Ficheiro</strong>
-              <span id="prev-format">ePUB / PDF</span>
+              <span id="prev-rating" style="color: #d97706; font-weight: bold;">⭐ -</span>
             </div>
             <div class="meta-item">
               <strong>Páginas</strong>
-              <span id="prev-pages">~280 págs</span>
+              <span id="prev-pages">eBook Digital</span>
             </div>
             <div class="meta-item">
               <strong>Idioma</strong>
               <span id="prev-language">Português</span>
             </div>
+            <div class="meta-item">
+              <strong>Entrega</strong>
+              <span style="color: #059669; font-weight: 600;">⚡ Download Imediato</span>
+            </div>
           </div>
 
           <div class="preview-synopsis" id="prev-synopsis">Sinopse do livro...</div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; pt: 0.8rem; border-top: 1px solid #e2e8f0;">
+          <!-- SELETORES DE FORMATO E QUANTIDADE -->
+          <div class="selector-group">
+            <div class="selector-item">
+              <label for="prev-format-select">Formato do Ficheiro:</label>
+              <select id="prev-format-select">
+                <option value="ePUB">ePUB (E-Readers / Telemóveis)</option>
+                <option value="PDF">PDF (PC / Impressão / Tablet)</option>
+                <option value="MOBI">MOBI (Kindle Amazon)</option>
+              </select>
+            </div>
+
+            <div class="selector-item" style="max-width: 140px;">
+              <label>Quantidade:</label>
+              <div class="qtd-counter">
+                <button class="qtd-btn" onclick="alterarQtdPreview(-1)">-</button>
+                <span class="qtd-val" id="prev-qtd-val">1</span>
+                <button class="qtd-btn" onclick="alterarQtdPreview(1)">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid #e2e8f0;">
             <div>
-              <span style="font-size: 0.8rem; color: #64748b; display: block;">Preço Digital</span>
+              <span style="font-size: 0.8rem; color: #64748b; display: block;">Preço Unitário</span>
               <h3 id="prev-price" style="color: #059669; font-size: 1.4rem;">R$ 0,00</h3>
             </div>
             <div style="display: flex; gap: 8px;">
               <button class="btn btn-outline" id="prev-sample-btn" onclick="abrirAmostra()">📖 Amostra</button>
-              <button class="btn btn-primary" id="prev-buy-btn">🛒 Comprar</button>
+              <button class="btn btn-primary" id="prev-buy-btn">🛒 Adicionar ao Carrinho</button>
             </div>
           </div>
 
@@ -167,7 +196,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: AUTENTICAÇÃO (LOGIN / REGISTO) -->
+  <!-- MODAL: AUTENTICAÇÃO -->
   <div class="modal-overlay" id="modal-auth">
     <div class="modal-content" style="max-width: 440px;">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
@@ -197,13 +226,13 @@
     </div>
   </div>
 
-  <!-- MODAL 3: CARRINHO DE COMPRAS -->
+  <!-- MODAL: CARRINHO COM CONTROLO DE QUANTIDADE E FORMATO -->
   <div class="modal-overlay" id="modal-cart">
-    <div class="modal-content" style="max-width: 520px;">
+    <div class="modal-content" style="max-width: 560px;">
       <button class="close-modal" onclick="fecharModais()">&times;</button>
       <h2 style="color: #0f172a; margin-bottom: 0.5rem;">O Teu Carrinho</h2>
       
-      <div id="cart-items-container" style="margin: 1.2rem 0; max-height: 280px; overflow-y: auto;"></div>
+      <div id="cart-items-container" style="margin: 1.2rem 0; max-height: 320px; overflow-y: auto;"></div>
       
       <div style="display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #f1f5f9; padding-top: 1rem; margin-top: 1rem;">
         <span style="font-size: 1.1rem; font-weight: 700; color: #334155;">Total:</span>
@@ -216,31 +245,28 @@
 
   <script>
     let todosEbooks = [];
-    let carrinho = [];
+    let carrinho = []; // Array contendo { id, titulo, autor, preco, formato, quantidade }
     let usuarioAtual = JSON.parse(localStorage.getItem('usuario_ebookstore')) || null;
     let modoAuth = 'login';
     let livroPreviewAtual = null;
+    let quantidadePreviewAtual = 1;
 
-    // Sistema de Notificações Toast (Substitui os alerts nativos do navegador)
     function showToast(mensagem, tipo = 'success') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       toast.className = `toast ${tipo}`;
-      
       const icones = { success: '✅', warning: '⚠️', error: '❌' };
       toast.innerHTML = `<span>${icones[tipo] || 'ℹ️'}</span> <div>${mensagem}</div>`;
-      
       container.appendChild(toast);
       setTimeout(() => toast.remove(), 4000);
     }
 
-    // Formatar moeda para Reais (R$)
     function formatarPreco(valor) {
       const num = typeof valor === 'number' ? valor : parseFloat(valor) || 0;
       return `R$ ${num.toFixed(2).replace('.', ',')}`;
     }
 
-    // Resolver Autor Flexível
+    // Resolutores Dinâmicos
     function resolverAutor(b) {
       let val = b.autor || b.author || b.autor_nome || b.nome_autor || b.escritor || b.authorName || b.nomeAutor || b.autores;
       if (!val) return 'Autor Desconhecido';
@@ -249,9 +275,22 @@
       return val;
     }
 
-    // Resolver Imagem
     function resolverImagem(b) {
       return b.imagem || b.capa || b.cover || b.imagem_url || b.imagemUrl || b.capa_url || b.capaUrl || b.url_capa || b.url_imagem || b.link_capa || b.url || 'https://via.placeholder.com/200x300?text=Sem+Capa';
+    }
+
+    function resolverPaginas(b) {
+      let val = b.paginas || b.pages || b.num_paginas || b.numero_paginas || b.pageCount || b.numPaginas || b.qtd_paginas;
+      if (!val) return 'eBook Digital';
+      return `${val} págs`;
+    }
+
+    function resolverAvaliacao(b) {
+      let val = b.avaliacao || b.rating || b.classificacao || b.nota || b.stars || b.score;
+      if (!val) return null;
+      if (typeof val === 'object') val = val.media || val.score || val.rate;
+      const num = parseFloat(val);
+      return isNaN(num) ? null : num.toFixed(1);
     }
 
     // Carregar Catálogo
@@ -292,25 +331,27 @@
         const autor = resolverAutor(b);
         const titulo = b.titulo || b.title || 'Sem Título';
         const precoFormatted = formatarPreco(b.preco);
-        const formato = b.formato || b.format || 'ePUB/PDF';
-        const avaliacao = b.avaliacao || b.rating || b.classificacao || '4.8';
-        const avaliacoesCount = b.avaliacoes_count || b.reviews || '120';
+        const avaliacaoVal = resolverAvaliacao(b);
+        
+        const ratingHtml = avaliacaoVal 
+          ? `⭐ ${avaliacaoVal} / 5.0` 
+          : `<span style="color: #9ca3af; font-weight: normal;">Destaque</span>`;
 
         return `
           <div class="book-card">
             <div class="book-cover-wrap" onclick="abrirPreview('${b._id || titulo}')">
-              <span class="book-badge-format">${formato}</span>
+              <span class="book-badge-format">ePUB / PDF / MOBI</span>
               <img src="${imagem}" alt="${titulo}" onerror="this.src='https://via.placeholder.com/200x300?text=Sem+Capa'">
             </div>
             <div class="book-details">
-              <div class="book-rating">⭐ ${avaliacao} <span>(${avaliacoesCount})</span></div>
+              <div class="book-rating">${ratingHtml}</div>
               <div class="book-title">${titulo}</div>
               <div class="book-author">${autor}</div>
               <div class="book-footer">
                 <div class="book-price">${precoFormatted}</div>
                 <div class="book-actions">
-                  <button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;" onclick="abrirPreview('${b._id || titulo}')">👁️ Ver</button>
-                  <button class="btn btn-primary" style="padding: 5px 12px; font-size: 0.8rem;" onclick="adicionarAoCarrinho('${b._id || titulo}')">🛒</button>
+                  <button class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;" onclick="abrirPreview('${b._id || titulo}')">👁️ Ver / Opções</button>
+                  <button class="btn btn-primary" style="padding: 5px 12px; font-size: 0.8rem;" onclick="adicionarDiretoCarrinho('${b._id || titulo}')">🛒</button>
                 </div>
               </div>
             </div>
@@ -338,38 +379,179 @@
       exibirEbooks(filtrados);
     }
 
-    // Modal Pré-Visualização / Detalhes completos
+    // Modal Detalhes do Livro
     function abrirPreview(idOuTitulo) {
       livroPreviewAtual = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
       if (!livroPreviewAtual) return;
+
+      quantidadePreviewAtual = 1;
+      document.getElementById('prev-qtd-val').innerText = quantidadePreviewAtual;
 
       const b = livroPreviewAtual;
       document.getElementById('prev-title').innerText = b.titulo || b.title || 'Sem Título';
       document.getElementById('prev-author').innerText = 'Por ' + resolverAutor(b);
       document.getElementById('prev-img').src = resolverImagem(b);
       
-      document.getElementById('prev-rating').innerText = `⭐ ${b.avaliacao || b.rating || '4.8'} / 5.0 (${b.avaliacoes_count || '120'} avaliações)`;
-      document.getElementById('prev-format').innerText = b.formato || b.format || 'ePUB / PDF';
-      document.getElementById('prev-pages').innerText = (b.paginas || b.pages || '250') + ' págs';
+      const ratingVal = resolverAvaliacao(b);
+      document.getElementById('prev-rating').innerText = ratingVal ? `⭐ ${ratingVal} / 5.0` : 'Sem avaliações';
+      document.getElementById('prev-pages').innerText = resolverPaginas(b);
       document.getElementById('prev-language').innerText = b.idioma || b.language || 'Português';
 
       document.getElementById('prev-synopsis').innerText = b.sinopse || b.descricao || b.description || 'Este eBook está disponível para leitura imediata em todos os seus dispositivos após a confirmação da compra.';
       document.getElementById('prev-price').innerText = formatarPreco(b.preco);
       
       const btnBuy = document.getElementById('prev-buy-btn');
-      btnBuy.onclick = () => { adicionarAoCarrinho(b._id || b.titulo); fecharModais(); };
+      btnBuy.onclick = () => { 
+        const formatoEscolhido = document.getElementById('prev-format-select').value;
+        adicionarAoCarrinho(b, formatoEscolhido, quantidadePreviewAtual); 
+        fecharModais(); 
+      };
 
       document.getElementById('modal-preview').classList.add('active');
+    }
+
+    function alterarQtdPreview(delta) {
+      quantidadePreviewAtual = Math.max(1, quantidadePreviewAtual + delta);
+      document.getElementById('prev-qtd-val').innerText = quantidadePreviewAtual;
     }
 
     function abrirAmostra() {
       if (!livroPreviewAtual) return;
       const amostraUrl = livroPreviewAtual.amostra_url || livroPreviewAtual.amostra || livroPreviewAtual.sample_url;
-      if (amostraUrl && amostraUrl.startsWith('http')) {
+      if (amostraUrl && typeof amostraUrl === 'string' && amostraUrl.startsWith('http')) {
         window.open(amostraUrl, '_blank');
       } else {
-        showToast(`Amostra do livro "${livroPreviewAtual.titulo}":
-\nCapítulo 1: Começo da jornada... O conhecimento está ao seu alcance!`, 'warning');
+        showToast(`Amostra de "${livroPreviewAtual.titulo}":
+\nCapítulo 1: Começo da leitura... O ficheiro completo estará disponível após a compra!`, 'warning');
+      }
+    }
+
+    // Gestão de Carrinho com Formato e Quantidade
+    function adicionarDiretoCarrinho(idOuTitulo) {
+      const book = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
+      if (book) {
+        adicionarAoCarrinho(book, 'ePUB', 1);
+      }
+    }
+
+    function adicionarAoCarrinho(book, formato, quantidade) {
+      const itemExistente = carrinho.find(item => item.id === (book._id || book.titulo) && item.formato === formato);
+
+      if (itemExistente) {
+        itemExistente.quantidade += quantidade;
+      } else {
+        carrinho.push({
+          id: book._id || book.titulo,
+          titulo: book.titulo || book.title || 'Sem Título',
+          autor: resolverAutor(book),
+          preco: parseFloat(book.preco || 0),
+          formato: formato,
+          quantidade: quantidade
+        });
+      }
+
+      atualizarContadorCarrinho();
+      showToast(`Adicionado ao carrinho: ${quantidade}x "${book.titulo}" (${formato})`, 'success');
+    }
+
+    function atualizarContadorCarrinho() {
+      const totalItens = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
+      document.getElementById('cart-count').innerText = totalItens;
+    }
+
+    function alterarQtdCarrinho(index, delta) {
+      carrinho[index].quantidade += delta;
+      if (carrinho[index].quantidade <= 0) {
+        carrinho.splice(index, 1);
+      }
+      atualizarContadorCarrinho();
+      abrirModalCarrinho();
+    }
+
+    function abrirModalCarrinho() {
+      const container = document.getElementById('cart-items-container');
+      const totalSpan = document.getElementById('cart-total');
+
+      if (carrinho.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1.5rem 0;">O teu carrinho está vazio.</p>';
+        totalSpan.innerText = 'R$ 0,00';
+      } else {
+        let totalGeral = 0;
+        container.innerHTML = carrinho.map((item, idx) => {
+          const subtotal = item.preco * item.quantidade;
+          totalGeral += subtotal;
+          return `
+            <div class="cart-item">
+              <div style="flex: 1;">
+                <strong style="color: #1e293b;">${item.titulo}</strong><br>
+                <small style="color: #64748b;">${item.autor}</small><br>
+                <span class="cart-format-badge">Formato: ${item.formato}</span>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div class="qtd-counter">
+                  <button class="qtd-btn" onclick="alterarQtdCarrinho(${idx}, -1)">-</button>
+                  <span class="qtd-val">${item.quantidade}</span>
+                  <button class="qtd-btn" onclick="alterarQtdCarrinho(${idx}, 1)">+</button>
+                </div>
+                <div style="text-align: right; min-width: 80px;">
+                  <span style="font-weight: 700; color: #059669; display: block;">${formatarPreco(subtotal)}</span>
+                  <small style="color: #9ca3af;">(${formatarPreco(item.preco)} un.)</small>
+                </div>
+                <button style="color: #ef4444; border: none; background: transparent; cursor: pointer; font-size: 1.1rem;" onclick="alterarQtdCarrinho(${idx}, -${item.quantidade})">🗑️</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+        totalSpan.innerText = formatarPreco(totalGeral);
+      }
+
+      document.getElementById('modal-cart').classList.add('active');
+    }
+
+    async function finalizarCompra() {
+      if (carrinho.length === 0) {
+        showToast('O teu carrinho está vazio!', 'warning');
+        return;
+      }
+
+      if (!usuarioAtual) {
+        showToast('Precisas de iniciar sessão para concluir a compra.', 'warning');
+        fecharModais();
+        abrirModalAuth();
+        return;
+      }
+
+      const totalGeral = carrinho.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
+      const dadosCompra = {
+        usuarioId: usuarioAtual._id,
+        usuarioEmail: usuarioAtual.email,
+        itens: carrinho.map(item => ({
+          id: item.id,
+          titulo: item.titulo,
+          precoUnitario: item.preco,
+          formato: item.formato,
+          quantidade: item.quantidade,
+          subtotal: (item.preco * item.quantidade).toFixed(2)
+        })),
+        total: totalGeral.toFixed(2)
+      };
+
+      try {
+        const res = await fetch('/api/compras', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dadosCompra)
+        });
+
+        if (!res.ok) throw new Error('Erro ao guardar a compra na base de dados.');
+
+        showToast('🎉 Compra efetuada com sucesso! Pedido registado no MongoDB Atlas.', 'success');
+        carrinho = [];
+        atualizarContadorCarrinho();
+        fecharModais();
+      } catch (err) {
+        showToast(err.message, 'error');
       }
     }
 
@@ -434,93 +616,6 @@
       } else {
         display.innerText = '';
         btn.innerText = '👤 Entrar';
-      }
-    }
-
-    // Carrinho & Compras
-    function adicionarAoCarrinho(idOuTitulo) {
-      const book = todosEbooks.find(b => (b._id === idOuTitulo || b.titulo === idOuTitulo));
-      if (book) {
-        carrinho.push(book);
-        document.getElementById('cart-count').innerText = carrinho.length;
-        showToast(`"${book.titulo || 'eBook'}" foi adicionado ao carrinho!`, 'success');
-      }
-    }
-
-    function abrirModalCarrinho() {
-      const container = document.getElementById('cart-items-container');
-      const totalSpan = document.getElementById('cart-total');
-
-      if (carrinho.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #64748b; padding: 1.5rem 0;">O teu carrinho está vazio.</p>';
-        totalSpan.innerText = 'R$ 0,00';
-      } else {
-        let total = 0;
-        container.innerHTML = carrinho.map((item, idx) => {
-          const preco = parseFloat(item.preco || 0);
-          total += preco;
-          return `
-            <div class="cart-item">
-              <div>
-                <strong style="color: #1e293b;">${item.titulo || 'eBook'}</strong><br>
-                <small style="color: #64748b;">${resolverAutor(item)}</small>
-              </div>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-weight: 700; color: #059669;">${formatarPreco(item.preco)}</span>
-                <button style="color: #ef4444; border: none; background: transparent; cursor: pointer; font-size: 1.1rem;" onclick="removerDoCarrinho(${idx})">🗑️</button>
-              </div>
-            </div>
-          `;
-        }).join('');
-        totalSpan.innerText = formatarPreco(total);
-      }
-
-      document.getElementById('modal-cart').classList.add('active');
-    }
-
-    function removerDoCarrinho(idx) {
-      carrinho.splice(idx, 1);
-      document.getElementById('cart-count').innerText = carrinho.length;
-      abrirModalCarrinho();
-      showToast('Item removido do carrinho.', 'warning');
-    }
-
-    async function finalizarCompra() {
-      if (carrinho.length === 0) {
-        showToast('O teu carrinho está vazio!', 'warning');
-        return;
-      }
-
-      if (!usuarioAtual) {
-        showToast('Precisas de iniciar sessão para concluir a compra.', 'warning');
-        fecharModais();
-        abrirModalAuth();
-        return;
-      }
-
-      const total = carrinho.reduce((acc, b) => acc + parseFloat(b.preco || 0), 0);
-      const dadosCompra = {
-        usuarioId: usuarioAtual._id,
-        usuarioEmail: usuarioAtual.email,
-        itens: carrinho.map(b => ({ id: b._id, titulo: b.titulo, preco: b.preco })),
-        total: total.toFixed(2)
-      };
-
-      try {
-        const res = await fetch('/api/compras', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(dadosCompra)
-        });
-
-        if (!res.ok) throw new Error('Erro ao guardar a compra na base de dados.');
-
-        showToast('🎉 Compra efetuada com sucesso! Pedido registado no MongoDB Atlas.', 'success');
-        carrinho = [];
-        document.getElementById('cart-count').innerText = '0';
-        fecharModais();
-      } catch (err) {
-        showToast(err.message, 'error');
       }
     }
 
